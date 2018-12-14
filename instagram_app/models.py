@@ -22,7 +22,7 @@ class Image(models.Model):
     caption = models.CharField(max_length = 20)
     profile = models.ForeignKey(Profile)
     comments = models.TextField()
-    photoimage = models.ImageField(upload_to ="instagram_appimages/")
+    photoimage = models.ImageField(upload_to ="instagramimages/")
 
     def __str__(self):
         return self.name 
