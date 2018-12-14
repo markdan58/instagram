@@ -32,14 +32,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'instagram_app',
-    'boostrap3',
+    'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'instagram_app.apps.InstagramConfig',
+    'instagram_app.apps',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'instagram',
-        'USER': 'instagram',
-        'PASSWORD': '5898danmark'
+        'USER': 'danmark',
+        'PASSWORD': '5898danmark',
     }
 }
 
