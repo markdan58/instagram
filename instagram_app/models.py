@@ -19,3 +19,9 @@ class Image(models.Model):
         return self.name 
 
 
+class profile(models.Model):
+    photoimage = models.ImageField(upload_to ="galleryimages/")
+    bio = models.CharField(max_length = 60)
+
+    def __str__(self):
+        return self.name 
