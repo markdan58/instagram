@@ -1,3 +1,0 @@
-Hello {{name}}
-
-Thank you for joining instagram.
