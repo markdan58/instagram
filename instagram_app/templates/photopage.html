@@ -4,7 +4,9 @@
 <html>
 
 <head>
-    {% include "search.html" %}
+    <nav>
+        {% include "search.html" %}
+    </nav>
 
     {% block styles %}
     {% bootstrap_css %}
@@ -20,16 +22,29 @@
             {% for photo_item in photos%}
             <div class="item">
                 <!--Display news images  -->
-                <a data-fancybox data-caption='<p>Name: {{photo_item.name}}</p><p>Caption:{{photo_item.cation}}'><img
+                <a data-fancybox data-caption='<p>Name: {{photo_item.name}}</p><p>Caption:{{photo_item.caption}}</p><p>Profile:{{photo_item.profile}}'><img
                         src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image"></a>
+                <form action="{% url 'comments' %}" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <input type="text" class="form-control" placeholder="add comments" name="Newcomments">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Add Comment</button>
+                    </div>
             </div>
-            {% endfor %}
+            </form>
         </div>
-        {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
-        {% bootstrap_javascript %}
-        {% endblock %}
+        {% for comment in photo_image.Comments.all%}
+        <p>{{comment.comment}}</p>
+        {% endfor %}
+
+
+        {% endfor %}
+    </div>
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
     </div>
 </body>
 
