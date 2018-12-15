@@ -1,8 +1,11 @@
 from django.shortcuts import render,redirect
 from .models import Image,Profile,Comments
 from .email import send_welcome_email
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def displayphoto(request):
     photos = Image.objects.all()
     commentview = Comments.objects.all()
@@ -10,11 +13,15 @@ def displayphoto(request):
     return render(request,'photopage.html',{"photos":photos})
 
 
+
+@login_required(login_url='/accounts/login/')
 def displayprofile(request):
     profiles = Profile.objects.all()
     return render(request,'profile.html',{"profiles":profiles})
 
 
+
+@login_required(login_url='/accounts/login/')
 def displaycomments(request):
     if 'Newcomments' in request.GET and request.GET["Newcomments"]:
         comments = request.GET.get("Newcomments")
@@ -24,6 +31,7 @@ def displaycomments(request):
     return redirect('photopage')
 
 
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'Image' in request.GET and request.GET["Image"]:
         image = request.GET.get("Image")
