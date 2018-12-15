@@ -1,20 +1,14 @@
 from django.db import models
 
-
-
-
-
-
-
 # Create your models here.  
 
 class Profile(models.Model):
-    photoimage = models.ImageField(upload_to ="instgram_appimages/")
+    username = models.CharField(max_length = 20)
+    profileimage = models.ImageField(upload_to = "instagramprofile/")
     bio = models.CharField(max_length = 60)
 
     def __str__(self):
-        return self.bio
-
+        return self.username
 
 
 class Image(models.Model):
@@ -26,3 +20,12 @@ class Image(models.Model):
 
     def __str__(self):
         return self.name 
+
+class Comments(models.Model):
+    username = models.CharField(max_length = 20)
+    photoimage = models.ForeignKey(Image,related_name='Comments')
+    comment = models.CharField(max_length = 60)
+    profile = models.ForeignKey(Profile,related_name='Comments')
+
+    def __str__(self):
+        return self.username
