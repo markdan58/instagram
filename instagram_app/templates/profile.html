@@ -5,6 +5,8 @@
 
 <head>
 
+    {% include "navbar.html" %}
+
     {% block styles %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
@@ -18,24 +20,17 @@
         {% block content %}
         {% for photo_item in profiles %}
         <div class="row">
-            <!--Display news Article images  -->
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{photo_item.profileimage.url}}" class="img-responsive" alt="Image">
+        </div>
+        <div class=" col-md-12 ">
+            <img src="{{photo_item.profileimage.url}}" class="img-circle" alt="Cinque Terre" width="304" height="280">
+            <div class=" col-md-12 ">
+                <h2 class="card-title">Username: {{ photo_item.username }} </h2>
+                <h2 class="card-text">Bio: {{ photo_item.bio }} </h2>
+                <button type="button" class="btn btn-outline-secondary">Follow</button>
+                <button type="button" class="btn btn-outline-secondary">Unfollow</button>
             </div>
-
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image">
-            </div>
-            <!-- displaying News articles -->
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <h2 class="text-center">Username: {{ photo_item.username }} </h2>
-                <h2 class="text-center">Bio: {{ photo_item.bio }} </h2>
-            </div>
-
             {% empty %}
-
             {% endfor %}
-
             {%endblock%}
             {% block scripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -43,6 +38,7 @@
             {% bootstrap_javascript %}
             {% endblock %}
         </div>
+
 </body>
 
 </html>

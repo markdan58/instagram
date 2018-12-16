@@ -4,9 +4,8 @@
 <html>
 
 <head>
-    <nav>
-        {% include "search.html" %}
-    </nav>
+
+    {% include "navbar.html" %}
 
     {% block styles %}
     {% bootstrap_css %}
@@ -18,33 +17,40 @@
 
 <body>
     <div class="container">
-        <div class="masonry">
-            {% for photo_item in photos%}
-            <div class="item">
-                <!--Display news images  -->
-                <a data-fancybox data-caption='<p>Name: {{photo_item.name}}</p><p>Caption:{{photo_item.caption}}</p><p>Profile:{{photo_item.profile}}'><img
-                        src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image"></a>
-                <form action="{% url 'comments' %}" method="post" enctype="multipart/form-data">
-                    {%csrf_token%}
-                    <input type="text" class="form-control" placeholder="add comments" name="Newcomments">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Add Comment</button>
-                    </div>
-            </div>
+        {% for photo_item in photos%}
+        <div class="item">
+            <!--Display news images  -->
+            <img src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image">
+            <br>
+            <br>
+            <form action="{% url 'comments' %}" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="col-xs-4">
+                    <label for="ex2">
+                        <input type="text" class="form-control" placeholder="add comments" name="Newcomments" id="ex3">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Comment</button>
+                        </div>
+                    </label>
+                </div>
+                <br>
+
+                <br>
+                <button type="button" class="btn btn-outline-secondary">Like</button>
             </form>
         </div>
+
         {% for comment in photo_image.Comments.all%}
         <p>{{comment.comment}}</p>
         {% endfor %}
 
 
         {% endfor %}
-    </div>
-    {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
-    {% bootstrap_javascript %}
-    {% endblock %}
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+        {% bootstrap_javascript %}
+        {% endblock %}
     </div>
 </body>
 

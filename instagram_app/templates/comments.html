@@ -1,0 +1,41 @@
+{% load bootstrap3 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    {% include "navbar.html" %}
+
+
+    {% block styles %}
+    {% bootstrap_css %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <p>Name: {{photo_item.name}}</p>
+            <p>Caption:{{photo_item.caption}}</p>
+            <p>Profile:{{photo_item.profile}}
+
+        </div>
+        {% for comment in photo_image.Comments.all%}
+        <p>{{comment.comment}}</p>
+        {% endfor %}
+
+
+        {% endfor %}
+    </div>
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+    </div>
+</body>
+
+</html>

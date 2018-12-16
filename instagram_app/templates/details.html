@@ -1,0 +1,41 @@
+{% load bootstrap3 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    {% include "navbar.html" %}
+
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            {% for photo_item in photos%}
+            <div class="item">
+                <!--Display news images  -->
+                <p>Name: {{photo_item.name}}</p>
+                <p>Caption:{{photo_item.caption}}</p>
+                <p>Profile:{{photo_item.profile}}'>
+                    <img src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image">
+            </div>
+
+            {% endfor %}
+        </div>
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+        {% bootstrap_javascript %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

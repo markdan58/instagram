@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from .models import Image,Profile,Comments
-from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 
 
@@ -28,17 +27,18 @@ def displaycomments(request):
 
         Comments.objects.create(comment = comments) 
 
-    return redirect('photopage')
+    return redirect('comments')
 
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
-    if 'Image' in request.GET and request.GET["Image"]:
-        image = request.GET.get("Image")
-        looked_Image = Image.search_category(image)
-        message = f"{image}"
 
-        return render(request, 'search.html',{"message":message,"images": looked_Image})
+    if 'Profile' in request.GET and request.GET["Profile"]:
+        onsearched_term = request.GET.get("Profile")
+        searched_profiles = Profile.search_username(onsearched_term)
+        message = f"{onsearched_term}"
+
+        return render(request, 'search.html',{"message":message,"profiles": searched_profiles})
 
     else:
         message = "You haven't searched for any term"
