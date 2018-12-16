@@ -29,6 +29,9 @@ class Image(models.Model):
     def __str__(self):
         return self.name 
 
+    def save_Image(self):
+        self.save()
+
 class Comments(models.Model):
     username = models.CharField(max_length = 20)
     photoimage = models.ForeignKey(Image,related_name='Comments',on_delete=models.CASCADE)

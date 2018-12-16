@@ -36,19 +36,16 @@
             <div class="col-md-6">
                 {% if user.is_authenticated %}
 
-                <a class="btn btn-primary" href="{%url 'photopage'%}" role="button">Home</a>
+                <a class="btn btn-secondary" href="{%url 'photopage'%}" role="button">Home</a>
 
-                <a class="btn btn-primary" href="{%url 'profile'%}" role="button">Profile</a>
+                <a class="btn btn-secondary" href="{%url 'profile'%}" role="button">Profile</a>
 
-                <a class="btn btn-primary" href="/accounts/password/change" role="button">Change Password</a>
+                <a class="btn btn-secondary" href="/accounts/password/change" role="button">Change Password</a>
 
-                <a class="btn btn-primary" href="/logout"" role=" button">Logout</a>
-
+                <a class="btn btn-secondary" href="/logout" role=" button">Logout</a>
                 {% else %}
-                <li>
-                    <a class='btn btn-default' href="/accounts/login">Login</a>
-                </li>
 
+               
                 {% endif %}
             </div>
 
