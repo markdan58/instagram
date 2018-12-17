@@ -6,8 +6,8 @@
 <head>
 
     {% include "navbar.html" %}
-
-
+    <br>
+    <br>
     {% block styles %}
     {% bootstrap_css %}
 
@@ -18,17 +18,17 @@
 <body>
     <div class="container">
         <div>
-            <p>Name: {{photo_item.name}}</p>
-            <p>Caption:{{photo_item.caption}}</p>
-            <p>Profile:{{photo_item.profile}}
+            <p>Comment: {{photo_item.comment}}</p>
 
         </div>
-        {% for comment in photo_image.Comments.all%}
-        <p>{{comment.comment}}</p>
-        {% endfor %}
-
-
-        {% endfor %}
+{% for comment in image.comments_set.all %}
+<li class="comment-list__comment">
+    <a href="{% url 'profile' username=comment.profile.username }" class="user">
+        {{ comment.user.username }}
+    </a>
+    <span class="comment">{{ comment.comment }}</span>
+</li>
+{% endfor %}
     </div>
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

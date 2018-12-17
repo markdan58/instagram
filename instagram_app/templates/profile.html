@@ -6,6 +6,9 @@
 <head>
 
     {% include "navbar.html" %}
+    <br>
+    <br>
+    <br>
 
     {% block styles %}
     {% bootstrap_css %}
@@ -21,13 +24,21 @@
         {% for photo_item in profiles %}
         <div class="row">
         </div>
-        <div class=" col-md-12 ">
+        <div class=" col-md-12 text-center ">
+            {% if photo_item.profileimage %}
             <img src="{{photo_item.profileimage.url}}" class="img-circle" alt="Cinque Terre" width="304" height="280">
+            {% else %}
+            <img src="{{photo_item.profileimage.url}}" class="img-circle" alt="Cinque Terre" width="304" height="280">
+            {% endif %}
             <div class=" col-md-12 ">
-                <h2 class="card-title">Username: {{ photo_item.username }} </h2>
+                <h2 class="card-title">Username: {{ photo_item.user }} </h2>
                 <h2 class="card-text">Bio: {{ photo_item.bio }} </h2>
                 <button type="button" class="btn btn-outline-secondary">Follow</button>
                 <button type="button" class="btn btn-outline-secondary">Unfollow</button>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
             {% empty %}
             {% endfor %}

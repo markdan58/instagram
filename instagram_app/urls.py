@@ -7,10 +7,11 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     url(r'^$',views.displayphoto,name='photopage'),
-    url(r'^search/', views.search_results, name='search_results'),
-    url(r'^profile/',views.displayprofile,name='profile'),
-    url(r'^comments/',views.displaycomments,name='comments'),
-
+     url(r'^search/', views.search_profile, name='search_profile'),
+    url(r'^accounts/profile/',views.displayprofile,name='profile'),
+    url(r'^comment/(\d+)/',views.displaycomments,name='comment'),
+    url(r'^register',views.register, name='register'),
+    url(r'^likes',views.like, name='like'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

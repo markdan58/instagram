@@ -3,26 +3,23 @@
 <nav>
 
     <head>
-
-
         {% block styles %}
         {% bootstrap_css %}
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         {% endblock %}
-
     </head>
     <div class="container">
-
         <div class="row">
             <!-- Search form -->
+            <br>
             <div class="col-md-6 navbar-right">
 
-                <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+                <form class="navbar-form" role="search" action="{% url 'search_profile' %}">
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Article" name="article">
+                        <input type="text" class="form-control" placeholder="Search Profile" name="profile">
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
@@ -31,8 +28,6 @@
                 </form>
             </div>
             <!-- end of search form -->
-
-
             <div class="col-md-6">
                 {% if user.is_authenticated %}
 
@@ -45,12 +40,12 @@
                 <a class="btn btn-secondary" href="/logout" role=" button">Logout</a>
                 {% else %}
 
-               
+                <a class="btn btn-secondary" href="/accounts/register" role=" button">Register</a>
+
+                <a class='btn btn-secondary' href="/accounts/login">Login</a>
+
                 {% endif %}
             </div>
-
         </div>
-
     </div>
-
 </nav>

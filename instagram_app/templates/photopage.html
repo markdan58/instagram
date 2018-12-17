@@ -4,9 +4,10 @@
 <html>
 
 <head>
-
     {% include "navbar.html" %}
-
+    <br>
+    <br>
+    <br>
     {% block styles %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
@@ -20,30 +21,35 @@
         {% for photo_item in photos%}
         <div class="item">
             <!--Display news images  -->
+
             <img src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image">
             <br>
             <br>
-            <form action="{% url 'comments' %}" method="post" enctype="multipart/form-data">
-                {%csrf_token%}
-                <div class="col-xs-4">
-                    <label for="ex2">
-                        <input type="text" class="form-control" placeholder="add comments" name="Newcomments" id="ex3">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">Comment</button>
-                        </div>
-                    </label>
-                </div>
-                <br>
+            {% for comment in photo_item.image_comments.all %}
+            <p>Comment:   {{comment.comment}}</p>
+            {% endfor %}
 
+            {% if request.user.is_authenticated %}
+            <section class="input-row">
+                <i class="fa # submit-like" aria-hidden="true"></i>
+                <div class="comment-input-wrapper">
+                    <form action="{% url 'comment' photo_item.id %}" method="post">
+                        {% csrf_token %}
+                        <input class="add-comment" name="comment" id="comment{{image.id}}" type="text" placeholder="Comment on this image....">
+                        <button class="btn btn-default" type="submit">Comment</button>
+                    </form>
+                </div>
+                <div class="hidden-data {{ image.pk }}" style="display: none;">
+                    <span class="image-pk">{{ image.pk }}</span>
+                </div>
+            </section>
+            {% endif %}
                 <br>
-                <button type="button" class="btn btn-outline-secondary">Like</button>
+                <br>
+                <button type="button" class="btn btn-outline-secondary" onclick="likepic">Like</button>
+                <img src="static/images/heart.png" alt="image">
             </form>
         </div>
-
-        {% for comment in photo_image.Comments.all%}
-        <p>{{comment.comment}}</p>
-        {% endfor %}
-
 
         {% endfor %}
         {% block scripts %}
