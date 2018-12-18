@@ -21,7 +21,7 @@ class Profile(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length = 20)
     caption = models.CharField(max_length = 20)
-    profile = models.ForeignKey(Profile)
+    profile = models.ForeignKey(Profile, related_name='photos')
     comment = models.TextField()
     photoimage = models.ImageField(upload_to ="instagramimages/")
     likes = models.IntegerField()

@@ -18,8 +18,8 @@ def displayphoto(request):
 
 @login_required(login_url='/accounts/login/')
 def displayprofile(request):
-    profiles = Profile.objects.all()
-    return render(request,'profile.html',{"profiles":profiles})
+    profiles = request.user.profile
+    return render(request,'profile.html',{"photo_item":profiles})
 
 
 @login_required(login_url='/accounts/login')
@@ -76,3 +76,8 @@ def like(request):
     context = {'pic_output':ajax.output()}
     return render(request,'photopage',context)
     
+
+    
+def searched_profile(request):
+    profiles = request.user.profile
+    return render(request,'searched_profile.html', {"profile":profiles})

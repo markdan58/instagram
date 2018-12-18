@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        {% if profile %}
+        <div class="col-md-12">
+            <a href="{% url 'searched_profile'%}" class="text-center"></a>
+            <img src="{{profile.profileimage.url}}" class="img-circle" alt="Cinque Terre" width="304" height="280">
+            <h1 id="username"><b><i>username: {{profile.user.username}}</i></b></h1>
+            <h1 id="username"><b><i>Bio: {{profile.bio}}</i></b></h1>
+            <br>
+            <br>
+            <br>
+
+            {% for photo_item in profile.photos.all%}
+            <div class="item">
+                <!--Display news images  -->
+
+                <img src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image">
+                {% endfor %}
+                <br>
+                <br>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}

@@ -21,7 +21,6 @@
 <body>
     <div class="container">
         {% block content %}
-        {% for photo_item in profiles %}
         <div class="row">
         </div>
         <div class=" col-md-12 text-center ">
@@ -39,16 +38,15 @@
                 <br>
                 <br>
                 <br>
-            </div>
-            {% empty %}
-            {% endfor %}
-            {%endblock%}
-            {% block scripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
-            {% bootstrap_javascript %}
-            {% endblock %}
-        </div>
+    
+                    <img src="{{photo_item.photoimage.url}}" class="img-responsive" alt="Image">
+                    {%endblock%}
+                    {% block scripts %}
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+                    {% bootstrap_javascript %}
+                    {% endblock %}
+                </div>
 
 </body>
 

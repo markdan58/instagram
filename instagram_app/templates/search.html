@@ -9,9 +9,10 @@
         {%for profile in profiles %}
 
         <div class="col-md-12 text-center">
-            <a href="/user/{{profile.user.username}}" class="text-center">
+            <a href="{% url 'searched_profile'%}" class="text-center">
                 <img src="{{profile.profileimage.url}}" class="img-circle" alt="Cinque Terre" width="304" height="280">
                 <h1 id="username"><b><i>{{profile.user.username}}</i></b></h1>
+                <h1 id="username"><b><i>{{profile.user.bio}}</i></b></h1>
             </a>
 
         </div>

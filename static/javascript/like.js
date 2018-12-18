@@ -1,0 +1,3 @@
+$
+
+likephoto(id)
