@@ -78,6 +78,6 @@ def like(request):
     
 
     
-def searched_profile(request):
-    profiles = request.user.profile
+def searched_profile(request,user_id):
+    profiles = Profile.objects.get(user_id = user_id)
     return render(request,'searched_profile.html', {"profile":profiles})
